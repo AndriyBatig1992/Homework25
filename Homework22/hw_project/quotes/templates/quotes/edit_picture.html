@@ -1,0 +1,17 @@
+{% extends 'quotes/base.html' %}
+
+{% block content %}
+
+<a href="/" class="back-button">← TO MAIN</a>
+<h1>Upload file</h1>
+<form action="" method="post">
+    {% csrf_token %}
+    <img src="{{pic.path.url}}" width="350" height="350" alt="pic">
+    <div class="mb-3">
+        <label class="form-label">Description</label>
+        <input type="text" class="form-control" value="{{pic.description}}" name="description">
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+{% endblock %}

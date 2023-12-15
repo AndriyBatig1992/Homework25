@@ -1,0 +1,44 @@
+{% extends 'quotes/base.html' %}
+
+
+{% block content %}
+
+<a href="/" class="back-button">← TO MAIN</a>
+<h1>Sidn IN</h1>
+{% if messages %}
+    {% for message in messages %}
+<div {% if message.tags %} class="alert alert-{{message.tags}}" {% endif %} role="alert">
+    {{message}}
+</div>
+    {% endfor %}
+{% endif%}
+
+{% if form.errors %}
+<div class="alert alert-danger" role="alert">
+    {{form.non_field_errors}}
+</div>
+{% endif %}
+
+<form method="post">
+    {% csrf_token %}
+    <div class="form-row">
+        <div class="mb-3">
+            <lable class="form-label">Username</lable>
+            {{form.username}}
+        </div>
+        <span>{{form.errors.username}}</span>
+    </div>
+    <div class="form-row">
+        <div class="mb-3">
+            <lable class="form-label">PASSWORD</lable>
+            {{form.password}}
+        </div>
+        <span>{{form.errors.password}}</span>
+    </div>
+    <button type="submit" class="btn btn-primary">Sign IN</button>
+    <div class="small text-center">
+        <a href="{% url 'users:password_reset' %}" class="text-center"><i>Forgot Password?</i></a>
+    </div>
+</form>
+{% endblock %}
+

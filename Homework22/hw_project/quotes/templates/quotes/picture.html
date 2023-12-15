@@ -1,0 +1,20 @@
+{% extends 'quotes/base.html' %}
+
+{% block content %}
+
+<a href="/" class="back-button">← TO MAIN</a>
+<h1>Your picture</h1>
+<div class="row">
+    {% for pic in pictures %}
+    <div class="card" style="width: 18rem;">
+        <img src="{{pic.path.url}}" class="card-img-top" alt="...">
+        <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">{{pic.description}}</p>
+            <a href="{% url 'quotes:edit_picture' pic.id %}" class="btn btn-primary">Edit</a>
+            <a href="{% url 'quotes:remove_picture' pic.id %}" class="btn btn-primary">Delete</a>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

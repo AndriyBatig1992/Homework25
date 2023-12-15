@@ -1,0 +1,45 @@
+{% extends 'quotes/base.html' %}
+
+{% block content %}
+
+<a href="/" class="back-button">← TO MAIN</a>
+<div class="container_add">
+    <h2 class="page-title">Add a New Author</h2>
+
+    {% if error %}
+    <div class="alert alert-danger" role="alert">
+        <strong>Error:</strong> {{ error }}
+    </div>
+    {% endif %}
+
+    <form method="POST" class="author-form">
+        {% csrf_token %}
+
+        <div class="form-group">
+            <label class="form-label">Full Name:</label>
+            {{ form.fullname }}
+        </div>
+
+        <div class="form-group">
+            <label class="form-label">Born Date:</label>
+            {{ form.born_date }}
+        </div>
+
+        <div class="form-group">
+            <label class="form-label">Born Location:</label>
+            {{ form.born_location }}
+        </div>
+
+        <div class="form-group">
+            <label class="form-label">Description:</label>
+            {{ form.description }}
+        </div>
+
+        <div class="grid">
+            <button type="submit" class="btn submit-btn">Submit</button>
+            <button type="reset" class="btn reset-btn">Reset</button>
+        </div>
+    </form>
+</div>
+
+{% endblock %}

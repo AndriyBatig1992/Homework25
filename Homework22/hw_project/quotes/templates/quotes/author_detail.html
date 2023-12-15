@@ -1,0 +1,27 @@
+{% extends 'quotes/base.html' %}
+
+{% block content %}
+<div class="author_content">
+    <a href="/" class="back-button">← TO MAIN</a>
+    <h1>{{ author.fullname }}</h1>
+    <p class="author">Born: {{ author.born_date }} in {{ author.born_location }}</p>
+    <p class="author">Description: {{ author.description }}</p>
+</div>
+<h2>Quotes by {{ author.fullname }}</h2>
+<div class="author_quotes">
+    {% for quote in quotes_by_author %}
+    <div class="quote" itemscope="" itemtype="http://schema.org/CreativeWork">
+        <span class="text" itemprop="text">{{ quote.quote }}</span>
+        <div class="tags">
+            Tags:
+            {% for tag in quote.tags.all %}
+            <a class="tag"  href="{% url 'quotes:tag_detail' tag.id %}">{{ tag.name }}</a>
+            {% endfor %}
+        </div>
+        {% if user.is_authenticated %}
+        <a class="read_btn" href="{% url 'quotes:quote_detail' quote.id %}">READ</a>
+        {% endif %}
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

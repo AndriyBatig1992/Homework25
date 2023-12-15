@@ -1,0 +1,52 @@
+{% extends 'quotes/base.html' %}
+
+
+{% block content %}
+<h1>SidnUp</h1>
+<form method="post">
+    {% csrf_token %}
+    <div class="form-row">
+        <div class="mb-3">
+            <lable class="form-label">Username</lable>
+            {{form.username}}
+        </div>
+        <span>{{form.errors.username}}</span>
+    </div>
+    <div class="form-row">
+        <div class="mb-3">
+            <lable class="form-label">First Name</lable>
+            {{form.first_name}}
+        </div>
+        <span>{{form.errors.first_name}}</span>
+    </div>
+    <div class="form-row">
+        <div class="mb-3">
+            <lable class="form-label">Last Name</lable>
+            {{form.last_name}}
+        </div>
+        <span>{{form.errors.last_name}}</span>
+    </div>
+    <div class="form-row">
+        <div class="mb-3">
+            <lable class="form-label">Email</lable>
+            {{form.email}}
+        </div>
+        <span>{{form.errors.email}}</span>
+    </div>
+    <div class="form-row">
+        <div class="mb-3">
+            <lable class="form-label">Password</lable>
+            {{form.password1}}
+        </div>
+        <span>{{form.errors.password1}}</span>
+    </div>
+    <div class="form-row">
+        <div class="mb-3">
+            <lable class="form-label">Confirm Password</lable>
+            {{form.password2}}
+        </div>
+        <span>{{form.errors.password2}}</span>
+    </div>
+    <button type="submit" class="btn btn-primary">Sign UP</button>
+</form>
+{% endblock %}
